@@ -1,227 +1,407 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Portfolio" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap"
-      rel="stylesheet"
-    />
-    <script
-      src="https://kit.fontawesome.com/fa62c117c7.js"
-      crossorigin="anonymous"
-    ></script>
-    <link rel="stylesheet" href="styles.css" />
-    <title> Hadeel Fahad </title>
-  </head>
-  <body class="light" id="top">
-    <header class="header center">
-      <h3>
-        <a href="https://github.com/hadeeltechcampus/Myprofile.github.io/edit/main/index.html" class="link"
-          >HF.</a
-        >
-      </h3>
-
-      <nav class="nav center">
-        <ul class="nav__list center">
-          <li class="nav__list-item">
-            <a class="link link--nav" href="#projects">Projects</a>
-          </li>
-          <li class="nav__list-item">
-            <a class="link link--nav" href="#skills">Skills</a>
-          </li>
-          <li class="nav__list-item">
-            <a class="link link--nav" href="#contact">Contact</a>
-          </li>
-        </ul>
-
-        <button type="button" aria-label="toggle theme" class="btn btn--icon">
-          <i aria-hidden="true" id="btn-theme" class="fas fa-moon"></i>
-        </button>
-
-        <button
-          type="button"
-          aria-label="toggle navigation"
-          class="btn btn--icon nav__hamburger"
-        >
-          <i aria-hidden="true" class="fas fa-bars"></i>
-        </button>
-      </nav>
+<head>
+  <meta charset="UTF-8">
+  <title>Hadeel Fahad | Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Programmer style fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;700&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a192f;
+      --bg-card: #112240;
+      --accent: #64ffda;
+      --accent-soft: #8892b0;
+      --text: #ccd6f6;
+      --muted: #7b8898;
+      --mono: 'Fira Mono', monospace;
+      --sans: 'Inter', Arial, sans-serif;
+    }
+    html, body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    a:hover { color: #fff; }
+    .wrapper {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 1.5em;
+    }
+    header {
+      padding: 5em 0 3em 0;
+      text-align: left;
+    }
+    header h1 {
+      font-family: var(--mono);
+      font-size: 2.6em;
+      font-weight: 900;
+      margin-bottom: 0.2em;
+      color: var(--accent);
+      letter-spacing: 2px;
+    }
+    header h2 {
+      font-size: 1.85em;
+      margin-top: 0;
+      color: var(--text);
+      font-weight: 700;
+    }
+    header p {
+      color: var(--accent-soft);
+      font-size: 1.26em;
+      margin-bottom: 2.3em;
+      max-width: 650px;
+    }
+    nav {
+      display: flex;
+      gap: 1.6em;
+      margin-bottom: 2.2em;
+      font-family: var(--mono);
+      font-size: 1.02em;
+      justify-content: flex-end;
+    }
+    nav a {
+      padding: 0.2em 0.4em;
+      border-radius: 4px;
+    }
+    nav a.active, nav a:hover {
+      background: var(--accent);
+      color: var(--bg);
+    }
+    section {
+      margin-bottom: 5em;
+    }
+    /* Section headers */
+    .section-header {
+      font-size: 1.26em;
+      font-family: var(--mono);
+      color: var(--accent);
+      margin-bottom: 1.1em;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 700;
+    }
+    /* Animated Card Style */
+    .card-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2em;
+      margin-top: 2em;
+    }
+    .card {
+      background: var(--bg-card);
+      border-radius: 12px;
+      box-shadow: 0 4px 24px #0003;
+      padding: 2em 1.3em;
+      min-height: 180px;
+      position: relative;
+      transition: box-shadow 0.2s, transform 0.2s;
+      will-change: transform;
+      cursor: pointer;
+      border: 1px solid #233554;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .card:hover {
+      box-shadow: 0 8px 40px #64ffda33;
+      transform: translateY(-8px) scale(1.025);
+      border-color: var(--accent);
+    }
+    .card-title {
+      color: var(--accent);
+      font-family: var(--mono);
+      font-size: 1.15em;
+      font-weight: 700;
+      margin-bottom: 0.8em;
+    }
+    .card-desc {
+      color: var(--accent-soft);
+      font-size: 1.08em;
+      margin-bottom: 1em;
+    }
+    .card-links a {
+      color: var(--accent);
+      font-family: var(--mono);
+      font-size: 1em;
+      margin-right: 1.1em;
+      background: #233554;
+      padding: 0.25em 0.8em;
+      border-radius: 5px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .card-links a:hover {
+      background: var(--accent);
+      color: var(--bg);
+    }
+    /* New Sections: Lectures & Weekly Posts */
+    .week-list, .lecture-list {
+      margin-top: 2em;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 2em;
+    }
+    .week-card, .lecture-card {
+      background: var(--bg-card);
+      border-radius: 12px;
+      box-shadow: 0 4px 24px #0003;
+      padding: 1.5em 1.3em;
+      transition: box-shadow 0.2s, transform 0.2s;
+      border: 1px solid #233554;
+      cursor: pointer;
+      overflow: hidden;
+      min-height: 120px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .week-card:hover, .lecture-card:hover {
+      box-shadow: 0 8px 32px #64ffda44;
+      transform: translateY(-6px) scale(1.02);
+      border-color: var(--accent);
+    }
+    .week-title, .lecture-title {
+      color: var(--accent);
+      font-family: var(--mono);
+      font-size: 1.07em;
+      font-weight: 700;
+      margin-bottom: 0.7em;
+    }
+    .week-desc, .lecture-desc {
+      color: var(--accent-soft);
+      font-size: 1em;
+      margin-bottom: 1em;
+    }
+    .week-links a, .lecture-links a {
+      color: var(--accent);
+      font-family: var(--mono);
+      font-size: 0.98em;
+      margin-right: 0.7em;
+      background: #233554;
+      padding: 0.22em 0.7em;
+      border-radius: 5px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .week-links a:hover, .lecture-links a:hover {
+      background: var(--accent);
+      color: var(--bg);
+    }
+    /* Responsive */
+    @media (max-width: 700px) {
+      nav { flex-wrap: wrap; gap: 0.6em; justify-content: center;}
+      header { padding-top: 2em; }
+      .wrapper { padding: 0 0.5em;}
+    }
+    footer {
+      border-top: 1px solid #233554;
+      color: var(--accent-soft);
+      text-align: center;
+      padding: 2em 0 1em 0;
+      font-size: 1em;
+      margin-top: 3em;
+      letter-spacing: 1px;
+      background: #0a192f;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <nav>
+      <a href="#about" class="active">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#lectures">Lectures</a>
+      <a href="#weekly">Weekly Posts</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <header>
+      <h1>Hadeel Fahad</h1>
+      <h2>Researcher, Lecturer & Programmer</h2>
+      <p>
+        I’m Hadeel Fahad, passionate about building impactful digital experiences, teaching, and exploring the latest in AI and web technologies. Welcome to my portfolio!
+      </p>
     </header>
-
-    <main>
-      <!-- About -->
-      <div class="about center">
-        <h1>Hi, I am <span class="about__name"> Hadeel Fahad </span></h1>
-        <h2 class="about__role"> Junior Data Scientist </h2>
-        <p class="about__desc">
-          Highly motivated researcher with a strong interest in pursuing a PhD in Machine Learning (ML) and Artificial Intelligence (AI).
-          I am driven by a desire to gain advanced theoretical knowledge and practical expertise in these rapidly evolving fields.
-          My ultimate goal is to leverage this expertise to contribute to advancing AI research and education in my home country.
-        </p>
-
-        <div class="about__contact center">
-          <a href="https://drive.google.com/file/d/1tCWYMuYVdM2C7wmnWj92JXnuP3stFmTg/view?usp=sharing">
-            <span class="btn btn--outline">Resume</span>
-          </a>
-
-          <a
-            href="https://github.com/hadeeltechcampus"
-            aria-label="github"
-            class="link link--icon"
-          >
-            <i aria-hidden="true" class="fab fa-github"></i>
-          </a>
-
-          <a
-            href="https://www.linkedin.com/in/hadeel-fahad-856618135/"
-            aria-label="linkedin"
-            class="link link--icon"
-          >
-            <i aria-hidden="true" class="fab fa-linkedin"></i>
-          </a>
+    <section id="about">
+      <div class="section-header">About</div>
+      <p>
+        I’m a researcher and lecturer focused on web development, programming, and artificial intelligence. My work blends technical depth with creativity, and I enjoy sharing what I learn through teaching and writing.
+      </p>
+    </section>
+    <section id="projects">
+      <div class="section-header">Projects</div>
+      <div class="card-list">
+        <div class="card">
+          <div>
+            <div class="card-title">Personal Website</div>
+            <div class="card-desc">
+              A modern, responsive portfolio showcasing my work, posts, and lectures. Built with HTML, CSS, and JavaScript.
+            </div>
+          </div>
+          <div class="card-links">
+            <a href="#">GitHub</a>
+            <a href="#">Live Demo</a>
+          </div>
+        </div>
+        <div class="card">
+          <div>
+            <div class="card-title">AI Weather App</div>
+            <div class="card-desc">
+              Real-time weather app using AI predictions and beautiful data visualizations.
+            </div>
+          </div>
+          <div class="card-links">
+            <a href="#">GitHub</a>
+          </div>
+        </div>
+        <div class="card">
+          <div>
+            <div class="card-title">Student Portal</div>
+            <div class="card-desc">
+              An interactive portal for students to access lectures, notes, and resources securely.
+            </div>
+          </div>
+          <div class="card-links">
+            <a href="#">GitHub</a>
+            <a href="#">Demo</a>
+          </div>
         </div>
       </div>
-
-      <!-- Projects -->
-      <section id="projects" class="section projects">
-        <h2 class="section__title">Projects</h2>
-
-        <div class="projects__grid">
-          <div class="project">
-            <h3> Business Activity Trends For Disaster Recovery </h3>
-            <p class="project__description">
-              This project analyzes the global impact of COVID-19 on businesses through 
-              a time-series analysis of posting rates, utilizing Facebook Business Activity Trends 
-              datasets and other relevant sources. The goal is to understand how businesses have been 
-              affected and how they have adapted their operations in response to the challenges posed by the pandemic
-            </p>
-            <ul class="project__stack">
-              <li class="project__stack-item">Python</li>
-              <li class="project__stack-item">Pandas</li>
-              <li class="project__stack-item">Numpy</li>
-              <li class="project__stack-item">Matplotlib</li>
-              <li class="project__stack-item">seaborn</li>
-            </ul>
-
-            <a
-              href="https://github.com/hadeeltechcampus/Masters-projects/tree/main/Business%20Activity%20Trends%20For%20Disaster%20Recovery"
-              aria-label="source code"
-              class="link link--icon"
-            >
-              <i aria-hidden="true" class="fab fa-github"></i>
-            </a>
-          </div>
-
-          <div class="project">
-            <h3> Computer Vision projects </h3>
-            <p class="project__description">
-              This project focuses on developing and implementing computer vision techniques to analyze and interpret visual data.
-              Applications include object detection, image classification, and facial recognition, leveraging machine learning models 
-              to achieve high accuracy and efficiency
-            </p>
-            <ul class="project__stack">
-              <li class="project__stack-item">OpenCV</li>
-            </ul>
-
-            <a
-              href="https://github.com/hadeeltechcampus/Masters-projects/tree/main/computer_vision"
-              aria-label="source code"
-              class="link link--icon"
-            >
-              <i aria-hidden="true" class="fab fa-github"></i>
-            </a>
-          
-          </div>
-
-          <div class="project">
-            <h3>Predict dementia using ML </h3>
-            <p class="project__description">
-              This machine learning project aims to predict dementia using various classification methods on labeled data.
-              The goal is to accurately classify and identify patterns that indicate the presence of dementia,
-              leveraging advanced machine learning techniques.
-            </p>
-            <ul class="project__stack">
-              <li class="project__stack-item">Python</li>
-              <li class="project__stack-item">Scikit-learn</li>
-              <li class="project__stack-item">Pandas</li>
-            </ul>
-            <a
-              href="https://github.com/hadeeltechcampus/Masters-projects/tree/main/Dementia%20Prediction"
-              aria-label="source code"
-              class="link link--icon" >
-              <i aria-hidden="true" class="fab fa-github"></i>
-            </a>
-          </div>
-          
-          <div class="project">
-            <h3>Investigating Public Perception of ChatGPT </h3>
-            <p class="project__description">
-              This project explores sentiment towards ChatGPT, analyzing tweet topics and user occupations to uncover knowledge gaps and misinformation about large language models (LLMs).
-              The insights aim to improve educational efforts and communication strategies, guiding future research and development of ChatGPT and other LLMs. Understanding public opinion is vital for integrating these models into various sectors.
-            </p>
-            <ul class="project__stack">
-              <li class="project__stack-item">Python</li>
-              <li class="project__stack-item">Scikit-learn</li>
-              <li class="project__stack-item">NLP</li>
-              <li class="project__stack-item">Pandas</li>
-              <li class="project__stack-item">seaborn</li>
-            </ul>
-            <a
-              href="https://github.com/hadeeltechcampus/Masters-projects/tree/main/Investigating%20Public%20Perception%20of%20ChatGPT%20A"
-              aria-label="source code"
-              class="link link--icon" >
-              <i aria-hidden="true" class="fab fa-github"></i>
-            </a>
+    </section>
+    <section id="experience">
+      <div class="section-header">Experience</div>
+      <div class="card-list">
+        <div class="card">
+          <div>
+            <div class="card-title">Lecturer</div>
+            <div class="card-desc">
+              University of Bisha<br>
+              Teaching web development, programming, and research methodology.
+            </div>
           </div>
         </div>
-      </section>
-
-      <!-- Skills -->
-      <section class="section skills" id="skills">
-        <h2 class="section__title">Skills</h2>
-        <ul class="skills__list">
-          <li class="skills__list-item btn btn--plain">Python</li>
-          <li class="skills__list-item btn btn--plain">Machine Learning </li>
-          <li class="skills__list-item btn btn--plain">Computer Vision </li>
-          <li class="skills__list-item btn btn--plain">Data Analysis</li>
-          <li class="skills__list-item btn btn--plain">Web Development </li>
-          <li class="skills__list-item btn btn--plain">Graphic Design</li>
-          <li class="skills__list-item btn btn--plain">Problem-solving</li>
-          <li class="skills__list-item btn btn--plain">Communication</li>
-          <li class="skills__list-item btn btn--plain">Teamwork</li>
-        </ul>
-      </section>
-
-      <!-- Contact -->
-      <section class="section contact center" id="contact">
-        <h2 class="section__title">Contact</h2>
-        <a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=CllgCJZZPzTVZntLMjNQkZKbqDPvBhmcDjHczdhLjXDMJdnPKllHqPclRVpBKlPFcHGJHvrmKtL">
-          <span class="btn btn--outline">Email me</span>
-        </a>
-      </section>
-    </main>
-
-    <footer class="footer">
-      <a
-        href="https://hadeeltechcampus.github.io/Myprofile.github.io/"
-        class="link footer__link"
-      >
-        Created By Hadeel Fahad
-      </a>
+        <div class="card">
+          <div>
+            <div class="card-title">Researcher</div>
+            <div class="card-desc">
+              Focused on AI, education technology, and user experience.
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div>
+            <div class="card-title">Freelance Developer</div>
+            <div class="card-desc">
+              Worked on websites, data dashboards, and automation tools for startups.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="skills">
+      <div class="section-header">Skills</div>
+      <div class="card-list">
+        <div class="card">
+          <div class="card-title">Programming Languages</div>
+          <div class="card-desc">JavaScript, Python, C++, HTML, CSS</div>
+        </div>
+        <div class="card">
+          <div class="card-title">Frameworks & Tools</div>
+          <div class="card-desc">React, Node.js, Django, Git, VS Code</div>
+        </div>
+        <div class="card">
+          <div class="card-title">Specialties</div>
+          <div class="card-desc">AI, E-learning, UX/UI, Data Visualization</div>
+        </div>
+      </div>
+    </section>
+    <!-- New Section: Lectures -->
+    <section id="lectures">
+      <div class="section-header">Lectures</div>
+      <div class="lecture-list">
+        <div class="lecture-card">
+          <div>
+            <div class="lecture-title">Intro to HTML & CSS</div>
+            <div class="lecture-desc">Foundations of web design. Includes interactive code examples and downloadable slides.</div>
+          </div>
+          <div class="lecture-links">
+            <a href="#">Slides</a>
+            <a href="#">Video</a>
+          </div>
+        </div>
+        <div class="lecture-card">
+          <div>
+            <div class="lecture-title">JavaScript Essentials</div>
+            <div class="lecture-desc">Learn programming concepts and hands-on JS skills. Includes annotated lecture notes.</div>
+          </div>
+          <div class="lecture-links">
+            <a href="#">Notes</a>
+          </div>
+        </div>
+        <div class="lecture-card">
+          <div>
+            <div class="lecture-title">React Fundamentals</div>
+            <div class="lecture-desc">How to build dynamic user interfaces with React. Includes project labs and resources.</div>
+          </div>
+          <div class="lecture-links">
+            <a href="#">Resources</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- New Section: Weekly Posts -->
+    <section id="weekly">
+      <div class="section-header">Weekly Posts</div>
+      <div class="week-list">
+        <div class="week-card">
+          <div>
+            <div class="week-title">Week 1: Getting Started with Programming</div>
+            <div class="week-desc">Tips for beginners—how to set up your coding environment and start your first project!</div>
+          </div>
+          <div class="week-links">
+            <a href="#">Read</a>
+          </div>
+        </div>
+        <div class="week-card">
+          <div>
+            <div class="week-title">Week 2: JavaScript Tricks</div>
+            <div class="week-desc">5 quick JS tips to make your code cleaner and more efficient.</div>
+          </div>
+          <div class="week-links">
+            <a href="#">Read</a>
+          </div>
+        </div>
+        <div class="week-card">
+          <div>
+            <div class="week-title">Week 3: AI in Education</div>
+            <div class="week-desc">How artificial intelligence is transforming teaching and learning.</div>
+          </div>
+          <div class="week-links">
+            <a href="#">Read</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="contact">
+      <div class="section-header">Contact</div>
+      <p>
+        Email: <a href="mailto:your@email.com">your@email.com</a><br>
+        LinkedIn: <a href="https://linkedin.com/in/yourprofile">yourprofile</a>
+      </p>
+    </section>
+    <footer>
+      &copy; 2025 Hadeel Fahad. Inspired by brittanychiang.com.
     </footer>
-
-    <div class="scroll-container">
-      <div class="scroll-top">
-        <a aria-label="Scroll up" href="#top">
-          <i aria-hidden="true" class="fas fa-arrow-up"></i>
-        </a>
-      </div>
-    </div>
-
-    <script src="./script.js"></script>
-  </body>
+  </div>
+</body>
 </html>
